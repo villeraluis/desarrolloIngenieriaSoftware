@@ -1,5 +1,5 @@
-
 <?php
+
 include "header.php";
 
 ?>
@@ -9,7 +9,7 @@ include "header.php";
 <!-- sccion de imagenes en carrusel-->
 
 <section class="container-fluid col-12 mt-5 py-5">
-    <div >
+    <div>
         <h1 class="text-center  py-2 font-weight-bold ">Curso de Ingeniería de Software</h1>
     </div>
     <div id="carouselExampleFade" class=" carousel slide carousel-fade" data-ride="carousel">
@@ -29,68 +29,33 @@ include "header.php";
 </section>
 
 
+
+
 <!-- secion de videos -->
 
 <section class="container-fluid  videos ">
     <div class="row ">
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 1 </div>
-                <iframe src="https://www.youtube.com/embed/YFin8nNnARA" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
+        <?php include("conexionbd.php");
+        $consulta = "SELECT  numero_u,link  FROM datos_video";
+        $resultado = mysqli_query($conexiones, $consulta);
+        while ($mostrar = mysqli_fetch_array($resultado)) {
+        ?>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="card ">
+                    <div class="card-body text-center"> Video Unidad <?php echo $mostrar['numero_u'] ?> </div>
+                    <iframe src="<?php echo $mostrar['link'] ?>" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 2</div>
-                <iframe src="https://www.youtube.com/embed/fHPs6NwNAe4" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 3 </div>
-                <iframe src="https://www.youtube.com/embed/-76-MOkIYfE" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 3 </div>
-                <iframe src="https://www.youtube.com/embed/nIhWq9x6WXw" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 5</div>
-                <iframe src="https://www.youtube.com/embed/iCpRJKTfhjU" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 6 </div>
-                <iframe src="https://www.youtube.com/embed/-76-MOkIYfE" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="card ">
-                <div class="card-body text-center"> Video Unidad 7 </div>
-                <iframe src="https://www.youtube.com/embed/-76-MOkIYfE" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
-            </div>
-        </div>
+        <?php
+        }
+        mysqli_close($conexiones);
+        ?>
     </div>
 </section>
 
-
-
+<!-- secion de footer-->
 
 <?php
 include "footer.php";
 
 ?>
-
-
-
-

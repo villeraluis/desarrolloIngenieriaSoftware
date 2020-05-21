@@ -1,3 +1,4 @@
+
 <div class="modal " id="ventana_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content text-center">
@@ -33,7 +34,14 @@
 </div>
 
 <?php
+ 
 include("conexionbd.php");
+
+// start a session
+
+
+
+
 
 if (isset($_POST['ingreso'])) {
 
@@ -46,10 +54,25 @@ if (isset($_POST['ingreso'])) {
 
     if (!$conexiones) {
         die("Conneccion fallo: " . mysqli_connect_error());
-    }
+    } else {
+        $consulta = " select * from datos_usuarios where correo='$correo' and pasword='$password'";
+        $resultado = mysqli_query($conexiones, $consulta);
 
-    else {
-        echo " &nbsp;&nbsp;no se a guardado el regitro correctamente por favor intentelo de nuevo";
+        $filas = mysqli_num_rows($resultado);
+
+
+        if ($filas == 0) {
+            $mensaje = "DEBES ESTAR REGISTRADO PRA INGRESAR";
+            echo "<script>";
+            echo "alert('$mensaje');";
+            echo "window.location = '../index.php';";
+            echo "</script>";
+        } else {
+           
+            $_SESSION['user'] = $correo;
+            $_SESSION['pasword'] = $password;
+            
+        }
     }
 
     mysqli_close($conexiones);
@@ -73,7 +96,7 @@ if (isset($_POST['ingreso'])) {
 
                     <div class="form-group">
                         <label for="formGroupExampleInput">Correo Electronico</label>
-                        <input type="text" required class="form-control" name="correo" placeholder="ingerese su correo">
+                        <input type="email" required class="form-control" name="correo" pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" placeholder="ingerese su correo">
                     </div>
 
                     <div class="form-group">
@@ -136,7 +159,7 @@ if (isset($_POST['registro'])) {
 
         echo "&nbsp;&nbsp;&nbsp;&nbsp;los datos fueron ingresados  satisfaftoriamente";
     } else {
-        
+
         echo " &nbsp;&nbsp;no se a guardado el regitro correctamente por favor intentelo de nuevo";
     }
 

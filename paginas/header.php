@@ -41,16 +41,50 @@
 
             </div>
 
+
+
             <div>
+                <?php
+                session_start();
+                include "form_login.php";
 
-                <?php include "form_login.php" ?>
-                <a class="nav-item nav-link  " data-toggle="modal" data-target="#ventana_modal" href="" role="button">
-                    <h4>Registrarse</h4>
-                </a>
+                if (empty($_SESSION['user'])) {
+                    session_destroy();
+                ?>
+                    <div class="dropdown show px-3">
+                        <a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Registrarse
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#ventana_modal" role="button" href="">Ingresar</a>
+                        </div>
+                    </div>
+                <?php
 
+                } else {
+                ?>
+                    <div class="dropdown show px-3">
+                        <a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <h4><?php echo $_SESSION['user']; ?></h4>
+                        </a>
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <input type="hidden" name="salir">
+                                <button type="submit" name="salir" class="dropdown-item">Salir</button>
+                            </div>
+                        </form>
+                    </div>
+                <?php
+                }
+                if (isset($_POST['salir'])) {
+                    session_destroy();
+                ?>
+                    <script>
+                        window.location.replace('../index.php');
+                    </script>
+                <?php
+                }
+                ?>
             </div>
-
-
         </nav>
-
     </div>
