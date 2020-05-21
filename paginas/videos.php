@@ -12,7 +12,7 @@
         <p class="lead">
         <?php include "form_subir_video.php" ?>
 
-            <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ventana_modal" href="" role="button">Subir nuevo Video</a>
+            <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ventana_modal_vid" href="" role="button">Subir nuevo Video</a>
         </p>
        
     </div>

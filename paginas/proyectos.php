@@ -13,7 +13,7 @@
         <?php include "form_subir_archivo.php" ?>
         <p class="lead ">
             <a class="btn btn-primary btn-lg" href="#proyectos" role="button">ver Proyectos</a>
-            <a class="btn btn-primary btn-lg"   data-toggle="modal" data-target="#ventana_modal"  href=""  role="button">Subir nuevo Proyecto</a>
+            <a class="btn btn-primary btn-lg"   data-toggle="modal" data-target="#ventana_modal_ar"  href=""  role="button">Subir nuevo Proyecto</a>
         </p>
 
     </div>
