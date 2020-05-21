@@ -8,3 +8,7 @@
     background-color: #007bff;
     border-color: #007bff;
 }
+
+.jumbotron {
+    padding-bottom: 5px;
+}
