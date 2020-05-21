@@ -53,7 +53,7 @@
                 ?>
                     <div class="dropdown show px-3">
                         <a class="nav-item nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Registrarse
+                           <h4>Registrarse</h4> 
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" data-toggle="modal" data-target="#ventana_modal" role="button" href="">Ingresar</a>

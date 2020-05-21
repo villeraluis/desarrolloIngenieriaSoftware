@@ -10,10 +10,28 @@
         <p class="lead">desde aqui podras visualizar y gestionar los videos de las unidades del curso</p>
         <hr class="my-2">
         <p class="lead">
-            <?php include "form_subir_video.php" ?>
+            <?php
 
+
+
+            if (empty($_SESSION['user'])) {
+                ?>
+                <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ventana_modal" href="" role="button"> Registrate para Subir nuevo Video</a>
+                <?php  
+            
+            } else {
+                include "form_subir_video.php";
+            
+
+
+            ?>
             <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ventana_modal_vid" href="" role="button">Subir nuevo Video</a>
+
+            <?php
+            }
+            ?>
         </p>
+
 
     </div>
 
@@ -36,9 +54,9 @@
         ?>
 
 
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="card ">
-                    <div class="card-body text-center"> Video Unidad <?php echo $mostrar['numero_u'] ?> </div>
+            <div class="col-12 col-sm-6 col-md-3 pb-3">
+                <div class="card pb-4">
+                    <div class="card-body text-center font-weight-bold"> Video Unidad <?php echo $mostrar['numero_u'] ?> </div>
                     <iframe src="<?php echo $mostrar['link'] ?>" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
                 </div>
             </div>

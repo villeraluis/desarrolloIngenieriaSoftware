@@ -10,7 +10,7 @@ include "header.php";
 
 <section class="container-fluid col-12 mt-5 py-5">
     <div>
-        <h1 class="text-center  py-2 font-weight-bold ">Curso de Ingeniería de Software</h1>
+        <h1 class="text-center  py-2 pt-3 my-3 font-weight-bold ">Curso de Ingeniería de Software</h1>
     </div>
     <div id="carouselExampleFade" class=" carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
@@ -35,14 +35,19 @@ include "header.php";
 
 <section class="container-fluid  videos ">
     <div class="row ">
-        <?php include("conexionbd.php");
+        <?php 
+        
+        include "conexionbd.php";
+        
+
+
         $consulta = "SELECT  numero_u,link  FROM datos_video";
         $resultado = mysqli_query($conexiones, $consulta);
         while ($mostrar = mysqli_fetch_array($resultado)) {
         ?>
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="card ">
-                    <div class="card-body text-center"> Video Unidad <?php echo $mostrar['numero_u'] ?> </div>
+            <div class="col-12 col-sm-6 col-md-3 pb-5">
+                <div class="card pb-4 ">
+                    <div class="card-body text-center font-weight-bold"> Video Unidad <?php echo $mostrar['numero_u'] ?> </div>
                     <iframe src="<?php echo $mostrar['link'] ?>" frameborder="2" allowfullscreen="allowfullscreen"></iframe>
                 </div>
             </div>

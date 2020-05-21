@@ -45,7 +45,7 @@
 </div>
 
 <?php
-include("conexionbd.php");
+include "conexionbd.php";
 
 if (isset($_POST['guardar'])) {
 

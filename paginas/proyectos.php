@@ -10,12 +10,22 @@
         <h1 class="display-5 font-weight-bold text-center pb-1 pt-3">Bienvenidos a la Seccion de Proyectos</h1>
         <p class="lead">desde aqui podras visualizar toda la documentacio de los proyectos desarrollados por los estudiantes</p>
         <hr class="my-2">
-        <?php include "form_subir_archivo.php" ?>
-        <p class="lead ">
+        
+        <p class="lead  ">
             <a class="btn btn-primary btn-lg" href="#proyectos" role="button">ver Proyectos</a>
-            <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ventana_modal_ar" href="" role="button">Subir nuevo Proyecto</a>
+            <?php
+            if (empty($_SESSION['user'])) {
+            ?>
+                <a class="btn btn-primary btn-lg my-2" data-toggle="modal" data-target="#ventana_modal" href="" role="button"> Registrate para Subir nuevo Proyecto</a>
+            <?php
+            } else {
+                 include "form_subir_archivo.php" 
+            ?>
+                <a class="btn btn-primary btn-lg my-2" data-toggle="modal" data-target="#ventana_modal_ar" href="" role="button">Subir nuevo Proyecto</a>
+            <?php
+            }
+            ?>
         </p>
-
     </div>
 
 </div>
@@ -37,7 +47,7 @@
             $resultado = mysqli_query($conexiones, $consulta);
             while ($mostrar = mysqli_fetch_array($resultado)) {
             ?>
-                <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
+                <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0 py-3">
                     <div class="card">
                         <!-- <img class="card-img-top h-100" src="images/proyecto1.png" alt="imagen del proyecto">-->
                         <div class="card-body">
@@ -79,4 +89,3 @@
 include "footer.php";
 
 ?>
-

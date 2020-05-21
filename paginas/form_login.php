@@ -1,4 +1,3 @@
-
 <div class="modal " id="ventana_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content text-center">
@@ -34,7 +33,7 @@
 </div>
 
 <?php
- 
+
 include("conexionbd.php");
 
 // start a session
@@ -59,8 +58,6 @@ if (isset($_POST['ingreso'])) {
         $resultado = mysqli_query($conexiones, $consulta);
 
         $filas = mysqli_num_rows($resultado);
-
-
         if ($filas == 0) {
             $mensaje = "DEBES ESTAR REGISTRADO PRA INGRESAR";
             echo "<script>";
@@ -68,16 +65,12 @@ if (isset($_POST['ingreso'])) {
             echo "window.location = '../index.php';";
             echo "</script>";
         } else {
-           
             $_SESSION['user'] = $correo;
             $_SESSION['pasword'] = $password;
-            
         }
     }
-
     mysqli_close($conexiones);
 }
-
 ?>
 
 <!-- ventana modal de registro por primera vez -->
@@ -152,15 +145,18 @@ if (isset($_POST['registro'])) {
     if (!$conexiones) {
         die("Conneccion fallo: " . mysqli_connect_error());
     }
-    $consulta1 = "INSERT INTO datos_Usuarios (correo, nombre,apellidos, id_estudiante, pasword)
+    $consulta1 = $consulta = "SELECT  correo FROM datos_Usuarios WHERE correo='$correo'";
+    $consulta2 = "INSERT INTO datos_Usuarios (correo, nombre,apellidos, id_estudiante, pasword)
        VALUES ('$correo', '$nombre', '$apellidos', '$id_estudiante', '$pasword')";
-
-    if (mysqli_query($conexiones, $consulta1)) {
-
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;los datos fueron ingresados  satisfaftoriamente";
+    $resultado = mysqli_query($conexiones, $consulta1);
+    $mostrar = mysqli_fetch_array($resultado);
+    
+    if ($mostrar['correo'] == "") {
+        if (mysqli_query($conexiones, $consulta2)) {
+            echo "&nbsp;&nbsp;&nbsp;&nbsp;los datos fueron ingresados  satisfaftoriamente";
+        }
     } else {
-
-        echo " &nbsp;&nbsp;no se a guardado el regitro correctamente por favor intentelo de nuevo";
+        echo "&nbsp;&nbsp;&nbsp;&nbsp;los datos  no fueron ingresados  ";
     }
 
     mysqli_close($conexiones);
