@@ -56,7 +56,7 @@
                            <h4>Registrarse</h4> 
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#ventana_modal" role="button" href="">Ingresar</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#ventana_modal" role="button" href=""> <h5>Ingresar</h5></a>
                         </div>
                     </div>
                 <?php
