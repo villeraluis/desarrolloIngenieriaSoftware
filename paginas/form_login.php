@@ -48,10 +48,7 @@ if (isset($_POST['ingreso'])) {
         die("Conneccion fallo: " . mysqli_connect_error());
     }
 
-    if (false) {
-
-        echo "&nbsp;&nbsp;&nbsp;&nbsp;los datos fueron ingresados  satisfaftoriamente";
-    } else {
+    else {
         echo " &nbsp;&nbsp;no se a guardado el regitro correctamente por favor intentelo de nuevo";
     }
 
@@ -117,7 +114,7 @@ if (isset($_POST['ingreso'])) {
 <?php
 include("conexionbd.php");
 
-if (isset($_POST['ingreso'])) {
+if (isset($_POST['registro'])) {
 
     $correo = $_POST['correo'];
     $nombre = $_POST['nombre'];
