@@ -10,7 +10,7 @@
         <h1 class="display-5 font-weight-bold text-center pb-1 pt-3">Bienvenidos a la Seccion de Proyectos</h1>
         <p class="lead">desde aqui podras visualizar toda la documentacio de los proyectos desarrollados por los estudiantes</p>
         <hr class="my-2">
-        
+
         <p class="lead  ">
             <a class="btn btn-primary btn-lg" href="#proyectos" role="button">ver Proyectos</a>
             <?php
@@ -19,7 +19,7 @@
                 <a class="btn btn-primary btn-lg my-2" data-toggle="modal" data-target="#ventana_modal" href="" role="button"> Registrate para Subir nuevo Proyecto</a>
             <?php
             } else {
-                 include "form_subir_archivo.php" 
+                include "form_subir_archivo.php"
             ?>
                 <a class="btn btn-primary btn-lg my-2" data-toggle="modal" data-target="#ventana_modal_ar" href="" role="button">Subir nuevo Proyecto</a>
             <?php
@@ -45,6 +45,7 @@
             <?php include("conexionbd.php");
             $consulta = "SELECT  *  FROM datos_proyecto";
             $resultado = mysqli_query($conexiones, $consulta);
+           
             while ($mostrar = mysqli_fetch_array($resultado)) {
             ?>
                 <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0 py-3">
@@ -55,32 +56,56 @@
                             <p class="card-text">
                                 <?php echo $mostrar['descripcion'] ?>
                             </p>
-                            <a href="#documentacion" class="btn btn-primary">Ver proyecto</a>
+                            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                                <input type="hidden" name="nompro" value ="<?php echo $mostrar['Titulo_pro'] ?>">
+
+                                <input type="hidden" name="coverpro" value ="<?php echo  $mostrar['link'] ?>">
+                                <button type="submit" name="verpro" class="btn btn-primary">Ver proyecto</button>
+
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
+            <?php
+            }
+            ?>
 
         </div>
 </section>
 
-
-
 <!-- seccion de pdf del proyectos    http://cic.puj.edu.co/wiki/lib/exe/fetch.php?media=materias:is1:01_lectura_ingenieria_software.pdf#toolbar=0&navpanes=0&scrollbar=0-->
+<?php
 
-<section class="container-fluid" id="documentacion">
-    <h1 class="display-5 font-weight-bold text-center pb-1 pt-3">Documentacion de <?php echo $mostrar['Titulo_pro'] ?> </h1>
+if (isset($_POST['verpro'])) {
 
-    <div>
-        <iframe class="embed-responsive" width="600" height=600 src="<?php echo $mostrar['link'] ?>"></iframe>
-    </div>
+    $linkpro = $_POST['coverpro'];
+    $titulo = $_POST['nompro'];
 
-</section>
+   
+    
+?>
+ <script> 
+window.location.replace('#documentacion'); 
+</script>
+
+    <section class="container-fluid " id="documentacion">
+
+        <h1 class="display-5 font-weight-bold text-center pb-1 pt-3">Documentacion de <?php echo $titulo ?> </h1>
+
+        <div>
+            <iframe class="embed-responsive" width="600" height=600 src="<?php echo $linkpro ?>"></iframe>
+        </div>
+
+    </section>
 
 
 
 <?php
-            }
-            mysqli_close($conexiones);
+}
+
+mysqli_close($conexiones);
 ?>
 
 

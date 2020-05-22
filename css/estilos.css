@@ -11,6 +11,16 @@ body {
 }
 
 
+.navbar {
+    
+    padding: 0rem 1rem;
+}
+
+.navbar-nav .nav-link {
+   
+    text-align: right;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color:  #0c4825!important;
 }
@@ -32,10 +42,7 @@ body {
     border-color:#034e23;
 }
 
-.bg-primary {
 
-
-}
 .jumbotron {
     padding-bottom: 5px;
 }
@@ -59,4 +66,3 @@ a:hover {
     background-color: #d1e8d3!important;
 }
 
-}
